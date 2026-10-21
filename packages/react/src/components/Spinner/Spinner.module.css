@@ -54,3 +54,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* Reduced motion: keep a slow turn so people still see that something is running. */
+@media (prefers-reduced-motion: reduce) {
+  .svg {
+    animation-duration: calc(var(--motion-duration-spin) * 3);
+  }
+}
