@@ -28,7 +28,7 @@
     ]
   },
   "modes": {
-    "brand": { "values": ["bridge", "ocean"], "default": "bridge" },
+    "brand": { "values": ["bridge", "ocean", "forest"], "default": "bridge" },
     "theme": { "values": ["light", "dark"], "default": "light", "parity": true },
     "density": { "values": ["comfortable", "compact"], "default": "comfortable" }
   },
