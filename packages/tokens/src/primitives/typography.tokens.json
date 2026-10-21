@@ -1,0 +1,245 @@
+{
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "fraunces": {
+        "$value": [
+          "Fraunces Variable",
+          "Fraunces",
+          "Georgia",
+          "Cambria",
+          "Times New Roman",
+          "serif"
+        ],
+        "$description": "Display and heading serif of the bridge brand. Self-hosted via @fontsource-variable/fraunces (import @demo-ds/tokens/fonts.css)."
+      },
+      "instrument-sans": {
+        "$value": [
+          "Instrument Sans Variable",
+          "Instrument Sans",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif"
+        ],
+        "$description": "Body and UI sans of the bridge brand. Self-hosted via @fontsource-variable/instrument-sans."
+      },
+      "plex-sans": {
+        "$value": [
+          "IBM Plex Sans Variable",
+          "IBM Plex Sans",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif"
+        ],
+        "$description": "Self-hosted via @fontsource-variable/ibm-plex-sans (import @demo-ds/tokens/fonts.css)."
+      },
+      "plex-mono": {
+        "$value": [
+          "IBM Plex Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Consolas",
+          "monospace"
+        ],
+        "$description": "Self-hosted via @fontsource/ibm-plex-mono."
+      },
+      "system": {
+        "$value": [
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif"
+        ]
+      }
+    },
+    "size": {
+      "100": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        }
+      },
+      "200": {
+        "$value": {
+          "value": 14,
+          "unit": "px"
+        }
+      },
+      "300": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "400": {
+        "$value": {
+          "value": 21,
+          "unit": "px"
+        }
+      },
+      "500": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        }
+      },
+      "600": {
+        "$value": {
+          "value": 30,
+          "unit": "px"
+        }
+      },
+      "700": {
+        "$value": {
+          "value": 36,
+          "unit": "px"
+        }
+      },
+      "800": {
+        "$value": {
+          "value": 44,
+          "unit": "px"
+        }
+      },
+      "$type": "dimension",
+      "$description": "Type scale. 12 caption, 14 UI, 16 body, 21 card titles, 30 section titles, 44 page titles, 64 display; 24, 36 and 50 stay for dense views and numbers. Brands pick from it through their typography roles.",
+      "900": {
+        "$value": {
+          "value": 50,
+          "unit": "px"
+        }
+      },
+      "1000": {
+        "$value": {
+          "value": 64,
+          "unit": "px"
+        }
+      }
+    },
+    "leading": {
+      "$type": "dimension",
+      "$description": "Line heights in px, on the 4px grid. Typography roles pair each size with one of these.",
+      "16": {
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "20": {
+        "$value": {
+          "value": 20,
+          "unit": "px"
+        }
+      },
+      "26": {
+        "$value": {
+          "value": 26,
+          "unit": "px"
+        }
+      },
+      "28": {
+        "$value": {
+          "value": 28,
+          "unit": "px"
+        }
+      },
+      "32": {
+        "$value": {
+          "value": 32,
+          "unit": "px"
+        }
+      },
+      "38": {
+        "$value": {
+          "value": 38,
+          "unit": "px"
+        }
+      },
+      "50": {
+        "$value": {
+          "value": 50,
+          "unit": "px"
+        }
+      },
+      "68": {
+        "$value": {
+          "value": 68,
+          "unit": "px"
+        }
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "semibold": {
+        "$value": 600
+      },
+      "bold": {
+        "$value": 700
+      }
+    },
+    "line-height": {
+      "$type": "number",
+      "none": {
+        "$value": 1
+      },
+      "tight": {
+        "$value": 1.2
+      },
+      "snug": {
+        "$value": 1.35
+      },
+      "normal": {
+        "$value": 1.5
+      },
+      "relaxed": {
+        "$value": 1.65
+      }
+    },
+    "tracking": {
+      "$type": "number",
+      "$description": "Letter-spacing in em (the build appends the unit from $extensions).",
+      "tighter": {
+        "$value": -0.025,
+        "$extensions": {
+          "dev.bridge.unit": "em"
+        }
+      },
+      "tight": {
+        "$value": -0.015,
+        "$extensions": {
+          "dev.bridge.unit": "em"
+        }
+      },
+      "snug": {
+        "$value": -0.01,
+        "$extensions": {
+          "dev.bridge.unit": "em"
+        }
+      },
+      "normal": {
+        "$value": 0,
+        "$extensions": {
+          "dev.bridge.unit": "em"
+        }
+      },
+      "wide": {
+        "$value": 0.01,
+        "$extensions": {
+          "dev.bridge.unit": "em"
+        }
+      }
+    }
+  }
+}

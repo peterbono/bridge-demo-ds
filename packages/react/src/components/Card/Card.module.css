@@ -1,0 +1,111 @@
+/* Things that sit do not cast shadows: a flat plate with a hairline edge. Only interactive cards lift. */
+.card {
+  --_inset: var(--layout-inset);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: var(--border-width-default) solid var(--card-border);
+  border-radius: var(--card-radius);
+  background-color: var(--card-bg);
+  color: var(--color-text-default);
+  font-family: var(--font-family-sans);
+  overflow: hidden;
+}
+
+.padding-compact {
+  --_inset: var(--space-3);
+}
+
+.padding-none {
+  --_inset: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--_inset) var(--_inset) 0;
+  font-family: var(--typography-h3-family);
+  font-size: var(--typography-h3-size);
+  font-weight: var(--typography-h3-weight);
+  line-height: var(--typography-h3-line-height);
+  letter-spacing: var(--typography-h3-tracking);
+}
+
+.body {
+  padding: var(--_inset);
+  color: var(--color-text-default);
+  font-size: var(--font-size-200);
+  line-height: var(--font-line-height-normal);
+}
+
+.header + .body {
+  padding-block-start: var(--space-2);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--_inset);
+  border-top: var(--border-width-default) solid var(--card-border);
+  background-color: var(--color-bg-subtle);
+}
+
+.padding-none .header,
+.padding-none .footer {
+  padding-inline: var(--space-4);
+}
+
+/* Interactive: the card lifts and its edge firms up on hover; the focus ring moves to the card. */
+.interactive {
+  transition-property: box-shadow, border-color, transform;
+  transition-duration: var(--motion-duration-fast);
+  transition-timing-function: var(--motion-easing-standard);
+}
+
+@media (hover: hover) {
+  .interactive:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--card-shadow);
+    transform: translateY(calc(var(--border-width-1) * -1));
+  }
+}
+
+.interactive:has([data-card-primary]:focus-visible) {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* The primary link (data-card-primary) covers the whole card so the plate is clickable; its ring moves to the card. */
+.interactive [data-card-primary] {
+  color: inherit;
+  text-decoration: none;
+}
+
+.interactive [data-card-primary]::after {
+  content: '';
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+}
+
+.interactive [data-card-primary]:focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive:hover {
+    transform: none;
+  }
+}
+
+.interactive :where(a, button, input, [tabindex]):not([data-card-primary]) {
+  position: relative;
+  z-index: 1;
+}

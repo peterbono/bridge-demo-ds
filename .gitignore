@@ -1,0 +1,7 @@
+node_modules/
+dist/
+storybook-static/
+bridge-data/
+*.log
+.DS_Store
+.env*

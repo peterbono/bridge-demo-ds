@@ -1,0 +1,170 @@
+/* A track on the subtle background; the selected segment is a raised plate. State reads aria-checked (not
+   data-checked) so a statically rendered control can be driven by a script.
+   Too many segments for the width (a phone): the inner track scrolls sideways inside the frame, never the page, and
+   the edge with more segments behind it fades out (data-overflow on the root, set by the component or the page
+   script). The frame keeps its border and background, so only the segments fade. */
+.root {
+  --_height: var(--control-height-md);
+  --_px: var(--space-3);
+  --_inset: var(--space-0-5);
+  --_fade: var(--space-8);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: stretch;
+  min-width: 0;
+  max-width: 100%;
+  min-height: var(--_height);
+  border: var(--border-width-default) solid var(--color-border-default);
+  border-radius: var(--radius-control);
+  background-color: var(--color-bg-subtle);
+  font-family: var(--font-family-sans);
+}
+
+.track {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: stretch;
+  min-width: 0;
+  padding: var(--_inset);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--_fade);
+  scrollbar-width: none;
+  border-radius: inherit;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+/* The mask only uses the gradient's alpha: currentcolor is any opaque color. */
+.root[data-overflow="end"] > .track {
+  mask-image: linear-gradient(to right, currentcolor calc(100% - var(--_fade)), transparent);
+}
+
+.root[data-overflow="start"] > .track {
+  mask-image: linear-gradient(to left, currentcolor calc(100% - var(--_fade)), transparent);
+}
+
+.root[data-overflow="both"] > .track {
+  mask-image: linear-gradient(to right, transparent, currentcolor var(--_fade), currentcolor calc(100% - var(--_fade)), transparent);
+}
+
+.sm {
+  --_height: var(--control-height-sm);
+  --_px: var(--space-2);
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+.fullWidth .segment {
+  flex: 1 1 0;
+  min-width: max-content;
+}
+
+.segment {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5);
+  min-width: 0;
+  margin: 0;
+  padding: 0 var(--_px);
+  border: var(--border-width-default) solid transparent;
+  border-radius: var(--radius-inset);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: var(--font-size-200);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-line-height-tight);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: background-color, color, box-shadow;
+  transition-duration: var(--motion-duration-instant);
+  transition-timing-function: var(--motion-easing-standard);
+}
+
+.sm .segment {
+  /* The segment itself is the target: at least the small control height, so the track grows by its inset. */
+  min-height: var(--control-height-sm);
+  font-size: var(--font-size-100);
+}
+
+/* Hover changes the text only: a fill would compete with the selected plate (in dark it reads brighter). */
+@media (hover: hover) {
+  .segment:hover:not(:disabled, [data-disabled], [aria-checked="true"]) {
+    color: var(--color-text-default);
+  }
+}
+
+.segment:active:not(:disabled, [data-disabled], [aria-checked="true"]) {
+  background-color: var(--color-surface-pressed);
+}
+
+/* The raised surface, not the default one: in dark the default surface is the track's own color, so the plate
+   vanished. Raised is white in light and one step lighter than the track in dark. Its edge is the checked control
+   color (Deep Harbor in light, light Harbor in dark), the same edge as a pressed Button toggle: border.default was
+   the plate's own color in dark, so the selected segment had no edge there. */
+.segment[aria-checked="true"] {
+  border-color: var(--color-control-checked-bg);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-default);
+  box-shadow: var(--elevation-raised);
+}
+
+/* The ring sits inside the segment: the track scrolls, so a ring outside it would be clipped. */
+.segment:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+
+/* On the Deep Harbor fill the ring turns to the fill's text color, one ring width inside the edge. */
+.strong .segment[aria-checked="true"]:focus-visible {
+  outline-color: var(--color-control-checked-fg);
+  outline-offset: calc(var(--focus-ring-width) * -2);
+}
+
+.segment:disabled,
+.segment[data-disabled] {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Strong: the selected segment fills with Deep Harbor (the checked control color). */
+.strong .segment[aria-checked="true"] {
+  border-color: var(--color-control-checked-bg);
+  background-color: var(--color-control-checked-bg);
+  color: var(--color-control-checked-fg);
+  box-shadow: none;
+}
+
+.segment[aria-checked="true"]:disabled,
+.segment[aria-checked="true"][data-disabled] {
+  border-color: transparent;
+  background-color: var(--color-action-disabled-bg);
+  box-shadow: none;
+}
+
+.leading,
+.icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

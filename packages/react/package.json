@@ -1,0 +1,49 @@
+{
+  "name": "@demo-ds/react",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo React components: Base UI behavior, token-only styling through CSS Modules.",
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./dom": {
+      "source": "./src/dom/index.ts",
+      "types": "./dist/dom/index.d.ts",
+      "default": "./dist/dom.js"
+    },
+    "./avatar-illustrated": {
+      "source": "./src/avatar-illustrated/index.tsx",
+      "types": "./dist/avatar-illustrated/index.d.ts",
+      "default": "./dist/avatar-illustrated.js"
+    },
+    "./styles.css": {
+      "source": "./src/styles/base.css",
+      "default": "./dist/styles.css"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.9.0",
+    "@demo-ds/tokens": "^1.0.0",
+    "@dicebear/collection": "9.4.3",
+    "@dicebear/core": "9.4.3",
+    "lucide-react": "1.58.0"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  }
+}

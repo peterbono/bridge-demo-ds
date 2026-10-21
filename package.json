@@ -1,0 +1,14 @@
+{
+  "name": "bridge-demo-ds",
+  "private": true,
+  "description": "Demo design system for Bridge: sample team, sample changes.",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "check": "npx -y @bridge-ds/cli@^0.11.1 check --offline",
+    "tokens:build": "npm -w @demo-ds/tokens run build",
+    "typecheck": "npm -w @demo-ds/react run typecheck",
+    "seed": "node scripts/seed-demo.mjs"
+  }
+}

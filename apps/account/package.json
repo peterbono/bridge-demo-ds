@@ -1,0 +1,11 @@
+{
+  "name": "@demo-ds/account-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sample product that uses the demo design system: account settings, billing and team pages.",
+  "dependencies": {
+    "@demo-ds/react": "^1.0.0",
+    "@demo-ds/tokens": "^1.0.0"
+  }
+}

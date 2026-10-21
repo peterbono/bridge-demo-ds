@@ -1,0 +1,230 @@
+/* Shared by Button and IconButton. Colors come from the component tier (button.*). */
+.button {
+  --_bg: transparent;
+  --_bg-hover: transparent;
+  --_bg-active: transparent;
+  --_text: inherit;
+  --_border: transparent;
+  --_height: var(--control-height-md);
+  --_px: var(--control-padding-x-md);
+
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap);
+  min-width: var(--_height);
+  min-height: var(--_height);
+  margin: 0;
+  padding: 0 var(--_px);
+  border: var(--border-width-default) solid var(--_border);
+  border-radius: var(--button-radius);
+  background-color: var(--_bg);
+  color: var(--_text);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-200);
+  font-weight: var(--button-font-weight);
+  line-height: var(--font-line-height-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--motion-duration-instant);
+  transition-timing-function: var(--motion-easing-standard);
+}
+
+@media (hover: hover) {
+  .button:hover:not([data-disabled]) {
+    background-color: var(--_bg-hover);
+  }
+}
+
+.button:active:not([data-disabled]) {
+  background-color: var(--_bg-active);
+}
+
+.button:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Variants */
+.primary {
+  --_bg: var(--button-primary-bg);
+  --_bg-hover: var(--button-primary-bg-hover);
+  --_bg-active: var(--button-primary-bg-active);
+  --_text: var(--button-primary-text);
+}
+
+.secondary {
+  --_bg: var(--button-secondary-bg);
+  --_bg-hover: var(--button-secondary-bg-hover);
+  --_bg-active: var(--button-secondary-bg-active);
+  --_text: var(--button-secondary-text);
+  --_border: var(--button-secondary-border);
+}
+
+.ghost {
+  --_bg-hover: var(--button-ghost-bg-hover);
+  --_bg-active: var(--button-ghost-bg-active);
+  --_text: var(--button-ghost-text);
+}
+
+.danger {
+  --_bg: var(--button-danger-bg);
+  --_bg-hover: var(--button-danger-bg-hover);
+  --_bg-active: var(--button-danger-bg-active);
+  --_text: var(--button-danger-text);
+}
+
+/* Inverse: the action on a strong surface (Deep Harbor, color.surface.inverse). A plain surface plate that reads in
+   both themes, because the strong surfaces invert with the theme too. */
+.inverse {
+  --_bg: var(--color-surface-default);
+  --_bg-hover: var(--color-surface-hover);
+  --_bg-active: var(--color-surface-pressed);
+  --_text: var(--color-text-default);
+}
+
+/* Link: reads as a text link inside a sentence, keeps button semantics (an action here, not navigation). It takes
+   the font of the surrounding text; the target stays at least 24px tall through its line box and padding. */
+.button.link {
+  --_text: var(--color-text-link);
+  --_height: auto;
+  --_px: 0;
+
+  min-width: 0;
+  min-height: 0;
+  padding-block: var(--space-0-5);
+  border: 0;
+  border-radius: var(--radius-inset);
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width-default);
+  text-underline-offset: var(--space-1);
+  white-space: normal;
+  vertical-align: baseline;
+}
+
+@media (hover: hover) {
+  .link:hover:not([data-disabled]) {
+    --_text: var(--color-text-link-hover);
+
+    background-color: transparent;
+  }
+}
+
+.link:active:not([data-disabled]) {
+  background-color: transparent;
+}
+
+/* The ring stands clear of the glyphs and the underline (the block padding gives it room inside the line box),
+   without inline padding that would move the text. */
+.link:focus-visible {
+  outline-offset: var(--border-width-strong);
+}
+
+.link .label {
+  overflow: visible;
+}
+
+.button.link:has(> .icon):not(.iconOnly) {
+  padding-inline: 0;
+}
+
+/* Toggle (the `pressed` prop): the selected look follows aria-pressed, so a script can drive a static toggle. The
+   selected fill and a Deep Harbor edge, like a selected SegmentedControl option; the 2px offset ring stays for focus. */
+.toggle[aria-pressed="true"]:not(.link, .primary, .danger) {
+  --_bg: var(--color-surface-selected);
+  --_bg-hover: var(--color-surface-selected);
+  --_bg-active: var(--color-surface-selected);
+  --_text: var(--color-text-default);
+  --_border: var(--color-control-checked-bg);
+}
+
+/* Hover on a pressed toggle: the edge steps to the checked hover color, so turning it off still looks clickable. */
+@media (hover: hover) {
+  .toggle[aria-pressed="true"]:not(.link, .primary, .danger, [data-disabled]):hover {
+    --_border: var(--color-control-checked-bg-hover);
+
+    box-shadow: inset 0 0 0 var(--border-width-default) var(--color-control-checked-bg-hover);
+  }
+}
+
+/* A pressed link reads as the current choice: ink text, heavier, still underlined so it stays clickable. */
+.link.toggle[aria-pressed="true"] {
+  --_text: var(--color-text-default);
+
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Sizes follow density tokens */
+.sm {
+  --_height: var(--control-height-sm);
+  --_px: var(--control-padding-x-sm);
+
+  gap: var(--space-1-5);
+}
+
+.md {
+  --_height: var(--control-height-md);
+  --_px: var(--control-padding-x-md);
+}
+
+.lg {
+  --_height: var(--control-height-lg);
+  --_px: var(--control-padding-x-lg);
+
+  font-size: var(--font-size-300);
+}
+
+.fullWidth {
+  display: flex;
+  width: 100%;
+}
+
+/* Square icon-only buttons (IconButton) */
+.iconOnly {
+  width: var(--_height);
+  padding: 0;
+}
+
+.icon {
+  flex: none;
+}
+
+/* The optical gap between an icon and the label is smaller than the padding: pull the icon in a bit. */
+.button:has(> .icon:first-child):not(.iconOnly) {
+  padding-inline-start: calc(var(--_px) - var(--space-1));
+}
+
+.button:has(> .icon:last-child):not(.iconOnly) {
+  padding-inline-end: calc(var(--_px) - var(--space-1));
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Disabled: neutral fill, no hover. Loading keeps its variant colors. */
+.button[data-disabled]:not([data-loading]) {
+  --_bg: var(--color-action-disabled-bg);
+  --_text: var(--color-action-disabled-text);
+  --_border: transparent;
+
+  cursor: not-allowed;
+}
+
+.ghost[data-disabled]:not([data-loading]),
+.link[data-disabled]:not([data-loading]) {
+  --_bg: transparent;
+}
+
+.button[data-loading] {
+  cursor: progress;
+}
