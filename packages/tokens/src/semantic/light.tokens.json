@@ -62,6 +62,11 @@
         "$type": "color",
         "$value": "{palette.primary.700}",
         "$description": "Deep Harbor in both themes, for a mode the whole page is in (Banner appearance strong). Text on it: text.on-solid. Dark keeps it dark, so it never reads as the Harbor zone or the light primary action of the dark theme."
+      },
+      "highlight": {
+        "$type": "color",
+        "$description": "Rows and cards that just arrived. Fades back to the default surface.",
+        "$value": "{palette.accent.50}"
       }
     },
     "text": {
