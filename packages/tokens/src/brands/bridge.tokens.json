@@ -335,7 +335,7 @@
       "$description": "Buttons, inputs, selects, tabs."
     },
     "container": {
-      "$value": "{radius.3xl}",
+      "$value": "{radius.2xl}",
       "$description": "Cards, zone blocks, alerts, popovers, menus, tables."
     },
     "overlay": {
