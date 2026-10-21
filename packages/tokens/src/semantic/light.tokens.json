@@ -31,7 +31,7 @@
       "raised": {
         "$type": "color",
         "$value": "{palette.neutral.0}",
-        "$description": "Floating layers: popovers, menus, dialogs, toasts."
+        "$description": "Things that float above the page: popovers, menus, dropdowns. Cards that sit on the page use surface.default."
       },
       "hover": {
         "$type": "color",
