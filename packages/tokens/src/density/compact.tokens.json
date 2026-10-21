@@ -40,7 +40,7 @@
   "table": {
     "$type": "dimension",
     "row-height": {
-      "$value": "{size.9}"
+      "$value": "{size.10}"
     },
     "cell-padding-x": {
       "$value": "{space.3}"
