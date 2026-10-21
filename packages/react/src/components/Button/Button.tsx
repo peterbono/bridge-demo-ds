@@ -21,6 +21,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   /** Shows a spinner, keeps the button focusable, ignores clicks and sets aria-busy. */
   loading?: boolean;
+  /**
+   * Label shown while loading, in place of the children: "Saving", "Publishing". Screen readers hear it once, through
+   * a polite live region, so people know the action started. Default: the children stay.
+   */
+  loadingLabel?: ReactNode;
   /** Lucide icon before the label. Replaced by the spinner while loading. */
   iconStart?: LucideIcon;
   /** Lucide icon after the label, for example a chevron on a menu trigger. */
@@ -50,14 +55,20 @@ const Rendered = forwardRef<HTMLElement, RenderedProps>(function Rendered({ rend
 
 /** Triggers an action on the current screen. Wraps the Base UI Button. */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', loading = false, iconStart, iconEnd, fullWidth = false, pressed, disabled, className, children, type = 'button', render, ...rest },
+  { variant = 'primary', size = 'md', loading = false, loadingLabel, iconStart, iconEnd, fullWidth = false, pressed, disabled, className, children, type = 'button', render, ...rest },
   ref,
 ) {
   const classes = cx(styles.button, styles[variant], styles[size], fullWidth && styles.fullWidth, pressed !== undefined && styles.toggle, className);
   const content = (
     <>
       {loading ? <Spinner size="sm" className={styles.icon} /> : iconStart && <Icon icon={iconStart} size="sm" className={styles.icon} />}
-      {children != null && <span className={styles.label}>{children}</span>}
+      {loading && loadingLabel != null ? (
+        <span className={styles.label} aria-live="polite">
+          {loadingLabel}
+        </span>
+      ) : (
+        children != null && <span className={styles.label}>{children}</span>
+      )}
       {iconEnd && <Icon icon={iconEnd} size="sm" className={styles.icon} />}
     </>
   );
