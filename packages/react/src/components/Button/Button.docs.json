@@ -20,11 +20,9 @@
     "Size sm in dense rows and toolbars, md everywhere else, lg only for a single call to action on an empty or onboarding screen. Heights follow the density setting."
   ],
   "whenNotToUse": [
-    "Going to another page or URL: use Link. Links and buttons are announced differently and users expect Cmd+click to open links in a new tab.",
-    "Navigation with variant link: a link-looking button still does not go anywhere. Use Link to go to another page.",
-    "Turning a setting on or off in a form: use Switch or Checkbox. A pressed Button is for toolbar toggles that change the view.",
-    "Picking one of several views: use Tabs or an attached ButtonGroup.",
-    "More than three actions in one row: keep the main ones and move the rest to a Menu behind an IconButton."
+    "Navigation to another page: use Link, or Button with render={<a href=\"...\" />} so it stays a link.",
+    "A ghost button as the only action of a dialog or a form: people miss it. Use primary.",
+    "Destructive actions that cannot be undone without a confirmation: use danger and an AlertDialog."
   ],
   "dos": [
     {
