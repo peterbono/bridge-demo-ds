@@ -31,7 +31,7 @@
       "raised": {
         "$type": "color",
         "$value": "{palette.neutral.800}",
-        "$description": "Things that float above the page: popovers, menus, dropdowns. Cards that sit on the page use surface.default."
+        "$description": "Floating layers: popovers, menus, dialogs, toasts."
       },
       "hover": {
         "$type": "color",
@@ -250,7 +250,7 @@
     "signal": {
       "default": {
         "$type": "color",
-        "$value": "{palette.accent.400}",
+        "$value": "{palette.accent.300}",
         "$description": "The signal: active indicators, progress, slider range."
       },
       "subtle": {
