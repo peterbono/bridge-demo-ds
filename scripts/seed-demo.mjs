@@ -34,13 +34,19 @@ const noEmDash = (s) => { if (/\u2014/.test(JSON.stringify(s))) throw new Error(
 const state = existsSync(STATE_FILE) ? JSON.parse(readFileSync(STATE_FILE, 'utf8')) : {};
 const save = () => writeFileSync(STATE_FILE, JSON.stringify(state, null, 2) + '\n');
 
+// Bridge prefixes titles ("feat(tokens): ", "Button: ") and lowers the first letter after the prefix.
+const sameTitle = (have, want) => {
+  const a = have.toLowerCase();
+  const b = want.toLowerCase();
+  return a === b || a.endsWith(`: ${b}`);
+};
 function findPr(title) {
   const list = ghJson('pr', 'list', '-R', REPO, '--state', 'all', '--limit', '200', '--json', 'number,title,state,headRefName');
-  return list.find((p) => p.title === title || p.title.endsWith(`: ${title}`));
+  return list.find((p) => sameTitle(p.title, title));
 }
 function findIssue(title) {
   const list = ghJson('issue', 'list', '-R', REPO, '--state', 'all', '--limit', '200', '--json', 'number,title,state');
-  return list.find((i) => i.title === title || i.title.endsWith(`: ${title}`) || i.title.includes(title));
+  return list.find((i) => sameTitle(i.title, title));
 }
 
 let bridge;

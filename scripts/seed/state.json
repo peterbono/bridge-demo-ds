@@ -1,0 +1,101 @@
+{
+  "h-compact-rows": {
+    "merged": true
+  },
+  "h-raised-description": {
+    "merged": true
+  },
+  "h-warning-text": {
+    "merged": true
+  },
+  "h-slow-motion": {
+    "merged": true
+  },
+  "h-signal-dark": {
+    "merged": true
+  },
+  "h-button-docs": {
+    "merged": true
+  },
+  "h-card-docs": {
+    "merged": true
+  },
+  "h-focus-offset-suggestion": {
+    "merged": true
+  },
+  "h-spinner-reduced-motion": {
+    "merged": true
+  },
+  "h-account-tokens": {
+    "merged": true
+  },
+  "t-primary": {
+    "number": 13
+  },
+  "t-space-14": {
+    "number": 14,
+    "commented": true
+  },
+  "t-radius": {
+    "number": 15
+  },
+  "t-dark-muted": {
+    "number": 16
+  },
+  "t-highlight": {
+    "number": 17
+  },
+  "t-deprecate-zone": {
+    "number": 18
+  },
+  "c-profile-header": {
+    "number": 20,
+    "commented": true
+  },
+  "c-button-loading": {
+    "number": 22,
+    "request": 37
+  },
+  "c-card-subtle": {
+    "number": 24,
+    "request": 38
+  },
+  "c-avatar-xl": {
+    "number": 26,
+    "request": 39
+  },
+  "d-tabs": {
+    "number": 27
+  },
+  "d-slider-claude": {
+    "number": 28
+  },
+  "b-forest": {
+    "number": 29
+  },
+  "s-moderate-motion": {
+    "number": 30
+  },
+  "s-dark-emphasis-border": {
+    "number": 31
+  },
+  "s-empty-state-docs": {
+    "number": 43
+  },
+  "p-profile": {
+    "number": 36,
+    "branch": "explore/profile-page"
+  },
+  "r-An undo action after deleting": {
+    "number": 40
+  },
+  "r-Keep the header visible on scroll": {
+    "number": 41
+  },
+  "r-A search field when there are many options": {
+    "number": 42
+  },
+  "h-moderate-250": {
+    "merged": true
+  }
+}

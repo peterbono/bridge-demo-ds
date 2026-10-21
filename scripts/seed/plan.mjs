@@ -214,7 +214,7 @@ export const OPEN = [
     request: {
       component: 'Button',
       kind: 'prop-change',
-      title: 'Button: change the label while loading',
+      title: 'Change the label while loading',
       summary:
         'On Save, the button shows a spinner but still says "Save changes", and screen reader users hear nothing. Ann asks for a loading label ("Saving") that is announced once.',
       changes: [{ field: 'loadingLabel', before: '', after: 'text shown and announced while loading' }],
@@ -232,7 +232,7 @@ export const OPEN = [
     request: {
       component: 'Card',
       kind: 'new-variant',
-      title: 'Card: a subtle tone for secondary groups',
+      title: 'A subtle tone for secondary groups',
       summary:
         'Side panels like "Before you invite people" compete with the main form because every card has the same border. Dana asks for a quieter card: tinted, no border.',
       changes: [{ field: 'tone', before: 'default', after: 'subtle' }],
@@ -250,7 +250,7 @@ export const OPEN = [
     request: {
       component: 'Avatar',
       kind: 'new-variant',
-      title: 'Avatar: an xl size for profile pages',
+      title: 'An xl size for profile pages',
       summary: 'The profile page mock uses a 64px avatar. Avatar stops at lg (40px), so the Account app scales it by hand.',
       changes: [{ field: 'size', before: 'xs, sm, md, lg', after: 'xs, sm, md, lg, xl' }],
       product: 'account',
@@ -339,7 +339,7 @@ export const OPEN = [
     key: 's-empty-state-docs',
     kind: 'docs-suggestion',
     component: 'EmptyState',
-    title: 'EmptyState: always offer the next step',
+    title: 'Always offer the next step',
     docs: {
       contentGuidelines: [
         'Title: what is empty, in plain words ("No invoices yet"), not an error.',
@@ -355,7 +355,7 @@ export const REQUESTS = [
   {
     component: 'Toast',
     kind: 'prop-change',
-    title: 'Toast: an undo action after deleting',
+    title: 'An undo action after deleting',
     summary: 'After deleting a teammate or an invoice draft, people want a few seconds to undo. Leo asks for an action slot on Toast with a longer timeout when it is used.',
     changes: [{ field: 'action', after: 'one button, e.g. Undo' }],
     product: 'account',
@@ -363,14 +363,14 @@ export const REQUESTS = [
   {
     component: 'Table',
     kind: 'prop-change',
-    title: 'Table: keep the header visible on scroll',
+    title: 'Keep the header visible on scroll',
     summary: 'Invoice tables run past the fold and people lose track of the columns. A stickyHeader option would keep the header row in view.',
     changes: [{ field: 'stickyHeader', before: 'none', after: 'boolean' }],
   },
   {
     component: 'Select',
     kind: 'new-variant',
-    title: 'Select: search field when there are many options',
+    title: 'A search field when there are many options',
     summary: 'The country select in Billing lists every country. Dana suggests a search field at the top of the list past 10 options, or a guidance note to use Combobox instead.',
     changes: [{ field: 'searchable', after: 'search field past 10 options' }],
   },
