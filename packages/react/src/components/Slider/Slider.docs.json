@@ -1,8 +1,20 @@
 {
   "summary": "Picks a value, or a range, on a continuous scale where the exact number matters less than the position.",
-  "preview": { "c": "Stack", "children": [
-    { "c": "Slider", "p": { "label": "Minimum contrast", "defaultValue": 4.5, "min": 3, "max": 7, "step": 0.5 } }
-  ] },
+  "preview": {
+    "c": "Stack",
+    "children": [
+      {
+        "c": "Slider",
+        "p": {
+          "label": "Minimum contrast",
+          "defaultValue": 4.5,
+          "min": 3,
+          "max": 7,
+          "step": 0.5
+        }
+      }
+    ]
+  },
   "whenToUse": [
     "Settings people tune by feel and check right away: volume, zoom, a price range filter.",
     "Pair it with a NumberField when people also need to type an exact value."
@@ -15,14 +27,44 @@
     {
       "title": "Show the value and its unit",
       "text": "format makes the value readable: 48%, 4.5, 16 px.",
-      "example": { "c": "Stack", "children": [ { "c": "Slider", "p": { "label": "Scrim opacity", "defaultValue": 0.48, "min": 0, "max": 1, "step": 0.01, "format": { "style": "percent" } } } ] }
+      "example": {
+        "c": "Stack",
+        "children": [
+          {
+            "c": "Slider",
+            "p": {
+              "label": "Scrim opacity",
+              "defaultValue": 0.48,
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "format": {
+                "style": "percent"
+              }
+            }
+          }
+        ]
+      }
     }
   ],
   "donts": [
     {
       "title": "A slider for precise input",
       "text": "Dragging to exactly 37 is frustrating. Use NumberField when the exact number matters.",
-      "example": { "c": "Stack", "children": [ { "c": "Slider", "p": { "label": "Port", "defaultValue": 8080, "min": 1, "max": 65535 } } ] }
+      "example": {
+        "c": "Stack",
+        "children": [
+          {
+            "c": "Slider",
+            "p": {
+              "label": "Port",
+              "defaultValue": 8080,
+              "min": 1,
+              "max": 65535
+            }
+          }
+        ]
+      }
     }
   ],
   "accessibility": [
@@ -41,5 +83,7 @@
     "indicator": "Filled range",
     "thumb": "Thumb",
     "value": "Formatted value"
-  }
+  },
+  "draftedBy": "claude",
+  "needsReview": true
 }
