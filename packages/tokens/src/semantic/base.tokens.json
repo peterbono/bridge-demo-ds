@@ -15,7 +15,7 @@
         "$description": "Dialogs, accordions, tab indicator."
       },
       "slow": {
-        "$value": "{duration.300}",
+        "$value": "{duration.400}",
         "$description": "Drawers, toasts entering."
       },
       "spin": {
