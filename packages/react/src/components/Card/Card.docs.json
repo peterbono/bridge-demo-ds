@@ -42,8 +42,9 @@
     "The hover lift is skipped when the user prefers reduced motion."
   ],
   "contentGuidelines": [
-    "Titles are short nouns in sentence case: \"Release 1.4.0\", \"Color tokens\".",
-    "Body text in one or two sentences; numbers as digits."
+    "Header: a noun phrase that names what the card holds, sentence case, no trailing period.",
+    "Body: one idea per card. Two ideas are two cards.",
+    "Tables inside a card: set padding=\"none\" so the rows reach the edges and line up with the header divider."
   ],
   "anatomy": {
     "card": "Plate",
