@@ -1,0 +1,41 @@
+From bbd118d8876891d5c1721faa13025a5e1ce6ae84 Mon Sep 17 00:00:00 2001
+From: peterbono <63565173+peterbono@users.noreply.github.com>
+Date: Thu, 22 Oct 2026 00:40:30 +0200
+Subject: [PATCH] Account app: use tokens for page width, row borders and muted
+ text
+
+---
+ apps/account/src/account.module.css | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/apps/account/src/account.module.css b/apps/account/src/account.module.css
+index b7b3ad6..4fa04a5 100644
+--- a/apps/account/src/account.module.css
++++ b/apps/account/src/account.module.css
+@@ -1,7 +1,7 @@
+ .page {
+   display: grid;
+   gap: var(--space-6);
+-  max-width: 960px;
++  max-width: var(--size-240);
+   margin-inline: auto;
+   padding: var(--space-8) var(--space-6);
+   color: var(--color-text-default);
+@@ -18,12 +18,12 @@
+   justify-content: space-between;
+   gap: var(--space-4);
+   padding-block: var(--space-3);
+-  border-bottom: 1px solid var(--color-border-subtle);
++  border-bottom: var(--border-width-default) solid var(--color-border-subtle);
+ }
+ 
+ .muted {
+   color: var(--color-text-muted);
+-  font-size: 14px;
++  font-size: var(--font-size-200);
+ }
+ 
+ .planPrice {
+-- 
+2.50.1 (Apple Git-155)
+

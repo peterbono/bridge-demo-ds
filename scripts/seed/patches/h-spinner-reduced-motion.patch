@@ -1,0 +1,40 @@
+From 8a90d4ada3f5585e2e20509f3ac36ea6d6463a48 Mon Sep 17 00:00:00 2001
+From: peterbono <63565173+peterbono@users.noreply.github.com>
+Date: Thu, 22 Oct 2026 00:40:30 +0200
+Subject: [PATCH] fix(Spinner): slow the turn under reduced motion
+
+---
+ .changeset/spinner-reduced-motion.md                     | 5 +++++
+ packages/react/src/components/Spinner/Spinner.module.css | 7 +++++++
+ 2 files changed, 12 insertions(+)
+ create mode 100644 .changeset/spinner-reduced-motion.md
+
+diff --git a/.changeset/spinner-reduced-motion.md b/.changeset/spinner-reduced-motion.md
+new file mode 100644
+index 0000000..a9e7cc4
+--- /dev/null
++++ b/.changeset/spinner-reduced-motion.md
+@@ -0,0 +1,5 @@
++---
++"@demo-ds/react": patch
++---
++
++Spinner: turns three times slower when the system asks for reduced motion.
+diff --git a/packages/react/src/components/Spinner/Spinner.module.css b/packages/react/src/components/Spinner/Spinner.module.css
+index 93fc637..10b133b 100644
+--- a/packages/react/src/components/Spinner/Spinner.module.css
++++ b/packages/react/src/components/Spinner/Spinner.module.css
+@@ -54,3 +54,10 @@
+     transform: rotate(360deg);
+   }
+ }
++
++/* Reduced motion: keep a slow turn so people still see that something is running. */
++@media (prefers-reduced-motion: reduce) {
++  .svg {
++    animation-duration: calc(var(--motion-duration-spin) * 3);
++  }
++}
+-- 
+2.50.1 (Apple Git-155)
+

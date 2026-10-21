@@ -1,0 +1,77 @@
+From 336b8d3f2541ccf1a0db395a2c11e3467c074d0e Mon Sep 17 00:00:00 2001
+From: peterbono <63565173+peterbono@users.noreply.github.com>
+Date: Thu, 22 Oct 2026 00:39:43 +0200
+Subject: [PATCH] feat(Button): loadingLabel announces the action while it runs
+
+---
+ .changeset/button-loading-label.md                |  5 +++++
+ .../src/components/Button/Button.stories.tsx      |  1 +
+ packages/react/src/components/Button/Button.tsx   | 15 +++++++++++++--
+ 3 files changed, 19 insertions(+), 2 deletions(-)
+ create mode 100644 .changeset/button-loading-label.md
+
+diff --git a/.changeset/button-loading-label.md b/.changeset/button-loading-label.md
+new file mode 100644
+index 0000000..5b5a6dc
+--- /dev/null
++++ b/.changeset/button-loading-label.md
+@@ -0,0 +1,5 @@
++---
++"@demo-ds/react": minor
++---
++
++Button: new `loadingLabel` prop. While `loading` is on, the label changes ("Save changes" becomes "Saving") and screen readers hear it once.
+diff --git a/packages/react/src/components/Button/Button.stories.tsx b/packages/react/src/components/Button/Button.stories.tsx
+index a9b360d..39a73e4 100644
+--- a/packages/react/src/components/Button/Button.stories.tsx
++++ b/packages/react/src/components/Button/Button.stories.tsx
+@@ -26,6 +26,7 @@ export const Ghost: Story = { args: { variant: 'ghost', children: 'View diff' }
+ export const Danger: Story = { args: { variant: 'danger', children: 'Delete 3 tokens', iconStart: Trash2 } };
+ export const WithIcons: Story = { args: { iconStart: GitPullRequest, children: 'Open pull request' } };
+ export const Loading: Story = { args: { loading: true, children: 'Publishing' } };
++export const LoadingLabel: Story = { args: { loading: true, loadingLabel: 'Saving', children: 'Save changes' } };
+ export const Disabled: Story = { args: { disabled: true } };
+ export const Link: Story = {
+   args: { variant: 'link', children: 'Show only these' },
+diff --git a/packages/react/src/components/Button/Button.tsx b/packages/react/src/components/Button/Button.tsx
+index 005e1b6..3573188 100644
+--- a/packages/react/src/components/Button/Button.tsx
++++ b/packages/react/src/components/Button/Button.tsx
+@@ -21,6 +21,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+   size?: ButtonSize;
+   /** Shows a spinner, keeps the button focusable, ignores clicks and sets aria-busy. */
+   loading?: boolean;
++  /**
++   * Label shown while loading, in place of the children: "Saving", "Publishing". Screen readers hear it once, through
++   * a polite live region, so people know the action started. Default: the children stay.
++   */
++  loadingLabel?: ReactNode;
+   /** Lucide icon before the label. Replaced by the spinner while loading. */
+   iconStart?: LucideIcon;
+   /** Lucide icon after the label, for example a chevron on a menu trigger. */
+@@ -50,14 +55,20 @@ const Rendered = forwardRef<HTMLElement, RenderedProps>(function Rendered({ rend
+ 
+ /** Triggers an action on the current screen. Wraps the Base UI Button. */
+ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+-  { variant = 'primary', size = 'md', loading = false, iconStart, iconEnd, fullWidth = false, pressed, disabled, className, children, type = 'button', render, ...rest },
++  { variant = 'primary', size = 'md', loading = false, loadingLabel, iconStart, iconEnd, fullWidth = false, pressed, disabled, className, children, type = 'button', render, ...rest },
+   ref,
+ ) {
+   const classes = cx(styles.button, styles[variant], styles[size], fullWidth && styles.fullWidth, pressed !== undefined && styles.toggle, className);
+   const content = (
+     <>
+       {loading ? <Spinner size="sm" className={styles.icon} /> : iconStart && <Icon icon={iconStart} size="sm" className={styles.icon} />}
+-      {children != null && <span className={styles.label}>{children}</span>}
++      {loading && loadingLabel != null ? (
++        <span className={styles.label} aria-live="polite">
++          {loadingLabel}
++        </span>
++      ) : (
++        children != null && <span className={styles.label}>{children}</span>
++      )}
+       {iconEnd && <Icon icon={iconEnd} size="sm" className={styles.icon} />}
+     </>
+   );
+-- 
+2.50.1 (Apple Git-155)
+

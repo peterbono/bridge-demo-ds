@@ -1,0 +1,87 @@
+From b9eabd6e896f0da3db3ff6d648ab6eedd71abc27 Mon Sep 17 00:00:00 2001
+From: peterbono <63565173+peterbono@users.noreply.github.com>
+Date: Thu, 22 Oct 2026 00:40:09 +0200
+Subject: [PATCH] feat(Avatar): xl size for profile pages
+
+---
+ .changeset/avatar-xl.md                                 | 5 +++++
+ packages/react/src/components/Avatar/Avatar.docs.json   | 3 ++-
+ packages/react/src/components/Avatar/Avatar.module.css  | 8 ++++++++
+ packages/react/src/components/Avatar/Avatar.stories.tsx | 2 +-
+ packages/react/src/components/Avatar/Avatar.tsx         | 2 +-
+ 5 files changed, 17 insertions(+), 3 deletions(-)
+ create mode 100644 .changeset/avatar-xl.md
+
+diff --git a/.changeset/avatar-xl.md b/.changeset/avatar-xl.md
+new file mode 100644
+index 0000000..4b81d0e
+--- /dev/null
++++ b/.changeset/avatar-xl.md
+@@ -0,0 +1,5 @@
++---
++"@demo-ds/react": minor
++---
++
++Avatar: new `xl` size (64px) for profile and account pages.
+diff --git a/packages/react/src/components/Avatar/Avatar.docs.json b/packages/react/src/components/Avatar/Avatar.docs.json
+index 6915003..44a0be5 100644
+--- a/packages/react/src/components/Avatar/Avatar.docs.json
++++ b/packages/react/src/components/Avatar/Avatar.docs.json
+@@ -10,7 +10,8 @@
+     "fallback=\"illustrated\" when most people have no photo: a drawn face from their login tells rows apart faster than two letters. Import Avatar from @demo-ds/react/avatar-illustrated (the drawings are a separate entry, about 120 kB gzipped).",
+     "kind=\"agent\" brand=\"claude\" for work Claude did (a drafted text, a change it opened): the Bridge agent mark (the Field Guide robot: a rounded head with an antenna, dot eyes and a smile) on a rounded square tile, named \"Claude AI\", so people see at a glance it is not a person.",
+     "mark only to show a vendor logo you have the brand owner's approval to use: Bridge ships its own agent mark because company logos are trademarks that need their owner's approval.",
+-    "AvatarGroup for the reviewers of a change; set max so the row never wraps."
++    "AvatarGroup for the reviewers of a change; set max so the row never wraps.",
++    "size=\"xl\" (64px) once per page, for the person the page is about: a profile or account page."
+   ],
+   "whenNotToUse": [
+     "As the only way to identify someone in a table: write the name too.",
+diff --git a/packages/react/src/components/Avatar/Avatar.module.css b/packages/react/src/components/Avatar/Avatar.module.css
+index 5eab82e..5d56f3b 100644
+--- a/packages/react/src/components/Avatar/Avatar.module.css
++++ b/packages/react/src/components/Avatar/Avatar.module.css
+@@ -46,6 +46,14 @@
+   font-size: var(--font-size-200);
+ }
+ 
++/* Profile pages and account settings: one person, large. */
++.xl {
++  --_size: var(--size-16);
++  --_mark: var(--size-10);
++
++  font-size: var(--font-size-300);
++}
++
+ .image {
+   width: 100%;
+   height: 100%;
+diff --git a/packages/react/src/components/Avatar/Avatar.stories.tsx b/packages/react/src/components/Avatar/Avatar.stories.tsx
+index 9474912..1fdeb57 100644
+--- a/packages/react/src/components/Avatar/Avatar.stories.tsx
++++ b/packages/react/src/components/Avatar/Avatar.stories.tsx
+@@ -14,7 +14,7 @@ const meta = {
+   title: 'Data display/Avatar',
+   component: Avatar,
+   args: { name: 'Ann Leroy', size: 'md' },
+-  argTypes: { size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg'] } },
++  argTypes: { size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg', 'xl'] } },
+ } satisfies Meta<typeof Avatar>;
+ 
+ export default meta;
+diff --git a/packages/react/src/components/Avatar/Avatar.tsx b/packages/react/src/components/Avatar/Avatar.tsx
+index df8fc18..81a1c0b 100644
+--- a/packages/react/src/components/Avatar/Avatar.tsx
++++ b/packages/react/src/components/Avatar/Avatar.tsx
+@@ -3,7 +3,7 @@ import { Avatar as BaseAvatar } from '@base-ui/react/avatar';
+ import { cx } from '../../utils/cx';
+ import styles from './Avatar.module.css';
+ 
+-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
++export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+ /** What shows when there is no photo, or while it loads, or when it fails. */
+ export type AvatarFallback = 'initials' | 'illustrated';
+ /** A person (or a team), or an AI agent acting in the product. */
+-- 
+2.50.1 (Apple Git-155)
+
