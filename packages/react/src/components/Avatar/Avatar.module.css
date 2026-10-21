@@ -46,6 +46,14 @@
   font-size: var(--font-size-200);
 }
 
+/* Profile pages and account settings: one person, large. */
+.xl {
+  --_size: var(--size-16);
+  --_mark: var(--size-10);
+
+  font-size: var(--font-size-300);
+}
+
 .image {
   width: 100%;
   height: 100%;
