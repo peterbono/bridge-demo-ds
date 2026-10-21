@@ -11,7 +11,7 @@
         "$description": "Tooltips, menus, popovers, checkbox ticks."
       },
       "moderate": {
-        "$value": "{duration.200}",
+        "$value": "{duration.250}",
         "$description": "Dialogs, accordions, tab indicator."
       },
       "slow": {
