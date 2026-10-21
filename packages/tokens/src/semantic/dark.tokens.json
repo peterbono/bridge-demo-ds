@@ -440,6 +440,7 @@
       },
       "offset": {
         "$type": "dimension",
+        "$description": "Gap between the control and its focus ring, so the ring stays visible on any fill and border.",
         "$value": "{border.width.2}"
       }
     }
