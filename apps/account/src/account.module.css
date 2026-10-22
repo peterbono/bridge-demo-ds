@@ -41,5 +41,5 @@
 .usageFill {
   height: 100%;
   border-radius: inherit;
-  background: #2b6cb0;
+  background: var(--color-action-primary-bg);
 }
