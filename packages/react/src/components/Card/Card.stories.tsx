@@ -7,8 +7,8 @@ import { Card, CardBody, CardFooter, CardHeader } from './Card';
 const meta = {
   title: 'Data display/Card',
   component: Card,
-  args: { padding: 'default', interactive: false },
-  argTypes: { padding: { control: 'inline-radio', options: ['none', 'compact', 'default'] } },
+  args: { padding: 'default', interactive: false, tone: 'default' },
+  argTypes: { padding: { control: 'inline-radio', options: ['none', 'compact', 'default'] }, tone: { control: 'inline-radio', options: ['default', 'subtle'] } },
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -43,6 +43,19 @@ export const Interactive: Story = {
         <Badge tone="info">12 stories</Badge>
       </CardHeader>
       <CardBody>Triggers an action on the current screen. 4 variants, 3 sizes, 31 consumers.</CardBody>
+    </Card>
+  ),
+};
+
+export const Subtle: Story = {
+  decorators: narrow,
+  args: { tone: 'subtle' },
+  render: (args) => (
+    <Card {...args} aria-labelledby="card-tips">
+      <CardHeader>
+        <span id="card-tips">Before you invite people</span>
+      </CardHeader>
+      <CardBody>Invited people see every project in this workspace. You can change their role at any time.</CardBody>
     </Card>
   ),
 };
