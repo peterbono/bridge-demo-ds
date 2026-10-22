@@ -19,6 +19,7 @@
       "zone": {
         "$type": "color",
         "$value": "{palette.primary.900}",
+        "$deprecated": "Use color.agent.surface for areas Claude wrote, or color.bg.subtle for a quiet band. Removed in 2.0.",
         "$description": "Large flat color blocks that open a space. A muted deep blue in dark."
       }
     },
