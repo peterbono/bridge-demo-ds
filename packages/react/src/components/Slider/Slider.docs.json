@@ -1,36 +1,76 @@
 {
-  "summary": "Picks a value or a range by position on a continuous scale, with the formatted value shown at the end of the track.",
-  "preview": { "c": "Stack", "children": [
-    { "c": "Slider", "p": { "label": "Minimum contrast", "defaultValue": 4.5, "min": 3, "max": 7, "step": 0.5 } }
-  ] },
+  "summary": "Picks a value, or a range, on a continuous scale where the exact number matters less than the position.",
+  "preview": {
+    "c": "Stack",
+    "children": [
+      {
+        "c": "Slider",
+        "p": {
+          "label": "Minimum contrast",
+          "defaultValue": 4.5,
+          "min": 3,
+          "max": 7,
+          "step": 0.5
+        }
+      }
+    ]
+  },
   "whenToUse": [
-    "Approximate values where the position matters more than the exact number: opacity, threshold, zoom.",
-    "A range with two thumbs: pass an array of two numbers.",
-    "Live previews: update on onValueChange, save on onValueCommitted."
+    "Settings people tune by feel and check right away: volume, zoom, a price range filter.",
+    "Pair it with a NumberField when people also need to type an exact value."
   ],
   "whenNotToUse": [
-    "An exact number the user knows: use NumberField.",
-    "Very large ranges where one step is tiny: pair it with a NumberField or use NumberField alone."
+    "Exact values such as a quantity or an amount of money: use NumberField.",
+    "A handful of named choices: use SegmentedControl or RadioGroup."
   ],
   "dos": [
     {
       "title": "Show the value and its unit",
       "text": "format makes the value readable: 48%, 4.5, 16 px.",
-      "example": { "c": "Stack", "children": [ { "c": "Slider", "p": { "label": "Scrim opacity", "defaultValue": 0.48, "min": 0, "max": 1, "step": 0.01, "format": { "style": "percent" } } } ] }
+      "example": {
+        "c": "Stack",
+        "children": [
+          {
+            "c": "Slider",
+            "p": {
+              "label": "Scrim opacity",
+              "defaultValue": 0.48,
+              "min": 0,
+              "max": 1,
+              "step": 0.01,
+              "format": {
+                "style": "percent"
+              }
+            }
+          }
+        ]
+      }
     }
   ],
   "donts": [
     {
       "title": "A slider for precise input",
       "text": "Dragging to exactly 37 is frustrating. Use NumberField when the exact number matters.",
-      "example": { "c": "Stack", "children": [ { "c": "Slider", "p": { "label": "Port", "defaultValue": 8080, "min": 1, "max": 65535 } } ] }
+      "example": {
+        "c": "Stack",
+        "children": [
+          {
+            "c": "Slider",
+            "p": {
+              "label": "Port",
+              "defaultValue": 8080,
+              "min": 1,
+              "max": 65535
+            }
+          }
+        ]
+      }
     }
   ],
   "accessibility": [
-    "Base UI Slider: each thumb is a native range input with role slider, aria-valuenow and aria-valuetext from format.",
-    "Arrow keys step, Page Up and Page Down or Shift+arrow use largeStep, Home and End jump to min and max.",
-    "Range thumbs are named \"<label> minimum\" and \"<label> maximum\"; override with thumbLabels.",
-    "The filled range uses the signal color (3:1 on the muted track); focus rings the thumb."
+    "Every thumb has an accessible name: the visible label, or aria-label for each end of a range.",
+    "Arrow keys move one step, Page Up and Page Down move ten, Home and End jump to the ends.",
+    "Show the current value as text next to the slider: color and position alone do not say it."
   ],
   "contentGuidelines": [
     "Label names the quantity: \"Minimum contrast\", not \"Slide to adjust\".",
@@ -43,5 +83,7 @@
     "indicator": "Filled range",
     "thumb": "Thumb",
     "value": "Formatted value"
-  }
+  },
+  "draftedBy": "claude",
+  "needsReview": true
 }
