@@ -17,9 +17,9 @@
     "Vertical orientation for settings pages with many sections next to their content."
   ],
   "whenNotToUse": [
-    "Steps of a sequence the user must complete in order: use a stepper or a form with sections.",
-    "Navigation between pages with their own URL: use SidebarNav or links styled as tabs, not Tabs (which do not change the URL).",
-    "Changing a setting or filter value: use RadioGroup or an attached ButtonGroup."
+    "Steps people go through in order (checkout, onboarding): use a stepper or separate pages.",
+    "Comparing content side by side: tabs hide one side. Show both.",
+    "More than six labels, or labels that wrap: use SidebarNav or a Select."
   ],
   "dos": [
     {
