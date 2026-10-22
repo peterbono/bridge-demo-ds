@@ -1,0 +1,55 @@
+/* Avatar, then the text column, then the actions on the end side; actions wrap below on narrow rows. */
+.profileHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-family-sans);
+}
+
+.avatar {
+  flex: none;
+}
+
+.text {
+  display: flex;
+  flex: 1 1 var(--size-120);
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  color: var(--color-text-default);
+  font-family: var(--typography-h2-family);
+  font-size: var(--typography-h2-size);
+  font-weight: var(--typography-h2-weight);
+  letter-spacing: var(--typography-h2-tracking);
+  line-height: var(--typography-h2-line-height);
+  overflow-wrap: anywhere;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--typography-body-size);
+  line-height: var(--typography-body-line-height);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-100);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
