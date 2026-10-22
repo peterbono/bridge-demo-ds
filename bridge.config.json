@@ -94,6 +94,9 @@
     "reference": "Button",
     "index": "packages/react/src/index.ts"
   },
+  "storybook": {
+    "url": "https://bridge-storybook.floriangouloubi.com"
+  },
   "docs": {
     "designLanguage": "docs/DESIGN-LANGUAGE.md",
     "guidelines": "AGENTS.md",
