@@ -12,11 +12,11 @@
   font-size: var(--font-size-200);
 }
 
-/* The seat meter: thicker than the usage bar, with a warm fill near the limit. Not in the library yet. */
+/* The seat meter: thicker than the usage bar, with a violet fill the library does not have. Not in the library yet. */
 .meter {
-  height: 12px;
-  border-radius: 6px;
-  background: #ece7f7;
+  height: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-muted);
 }
 
 .meterFill {
@@ -39,22 +39,23 @@
   display: grid;
 }
 
-/* Role pills: one tint per role. The library Badge has no role tones. */
+/* Role pills: the owner gets a violet tint of its own (the library Badge has no role tone); the others use the
+   library's neutral and info tones. */
 .rolePill {
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: var(--space-0-5) var(--space-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-200);
+  font-weight: var(--font-weight-semibold);
   background: #f3e8ff;
   color: #6b21a8;
 }
 
 .rolePill[data-role='admin'] {
-  background: #e0f2fe;
-  color: #075985;
+  background: var(--color-feedback-info-bg);
+  color: var(--color-feedback-info-text);
 }
 
 .rolePill[data-role='member'] {
-  background: #f1f5f9;
-  color: #334155;
+  background: var(--color-bg-muted);
+  color: var(--color-text-default);
 }
