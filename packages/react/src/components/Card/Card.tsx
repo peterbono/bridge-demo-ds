@@ -3,6 +3,7 @@ import { cx } from '../../utils/cx';
 import styles from './Card.module.css';
 
 export type CardPadding = 'none' | 'compact' | 'default';
+export type CardTone = 'default' | 'subtle';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   /**
@@ -13,14 +14,19 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   interactive?: boolean;
   /** Inner spacing of header, body and footer. `none` for full-bleed tables and media. Default `default`. */
   padding?: CardPadding;
+  /**
+   * `subtle` sits one step back from the page: a tinted plate with no border, for secondary groups such as a
+   * summary beside a form or tips in an empty column. Default `default`.
+   */
+  tone?: CardTone;
 }
 
 /** A flat plate that groups related content. Pass aria-labelledby pointing at the header title when it is a landmark. */
 export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
-  { interactive = false, padding = 'default', className, ...rest },
+  { interactive = false, padding = 'default', tone = 'default', className, ...rest },
   ref,
 ) {
-  return <div ref={ref} className={cx(styles.card, styles[`padding-${padding}`], interactive && styles.interactive, className)} {...rest} />;
+  return <div ref={ref} className={cx(styles.card, styles[`padding-${padding}`], tone === 'subtle' && styles.subtle, interactive && styles.interactive, className)} {...rest} />;
 });
 
 export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(function CardHeader({ className, ...rest }, ref) {

@@ -14,6 +14,12 @@
   overflow: hidden;
 }
 
+/* A tinted plate one step back from the page: the tint draws the edge, so the hairline goes. */
+.subtle {
+  border-color: transparent;
+  background-color: var(--color-bg-subtle);
+}
+
 .padding-compact {
   --_inset: var(--space-3);
 }
