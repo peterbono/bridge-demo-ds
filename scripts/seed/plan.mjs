@@ -396,3 +396,48 @@ export const LATE_MERGE = {
   summary: 'Leo measured that the dialog content shifts while it fades in at 200ms on slower laptops. 250ms lets it land before the fade ends.',
   edits: [{ op: 'set', path: 'motion.duration.moderate', value: '{duration.250}' }],
 };
+
+// More explorations in the Account app, one per state the Studio home shows (`explorations` phase): pieces found
+// (still exploring), promoted to review, and kept (promoted and merged). Each starts with bridge_start_exploration,
+// gets its screen code from scripts/seed/product/, and records what it adds outside the library.
+export const EXPLORATIONS = [
+  {
+    key: 'x-team-seats',
+    name: 'Team seats and roles',
+    purpose: 'Show who holds each seat and their role on the Team page, so admins can free seats before the renewal. Malik wants it for the November renewals.',
+    useCase: 'stakeholder-demo',
+    product: 'account',
+    experimental: ['Account app: Team page', 'Role pills (no role tones in the library)', 'Seat meter (not in the library yet)'],
+    requestedBy: 'Malik Diallo',
+    files: [
+      ['Team.tsx', 'apps/account/src/pages/Team.tsx'],
+      ['team.module.css', 'apps/account/src/team.module.css'],
+    ],
+    then: 'pieces',
+  },
+  {
+    key: 'x-notification-channels',
+    name: 'Notification channels',
+    purpose: 'Let people pick where each alert goes, email or in the app, on Account settings. Built with the library only.',
+    useCase: 'ab-idea',
+    product: 'account',
+    experimental: ['Account app: Notifications in Account settings'],
+    requestedBy: 'Sofia Reyes',
+    files: [['Settings.tsx', 'apps/account/src/pages/Settings.tsx']],
+    then: 'review',
+  },
+  {
+    key: 'x-plan-comparison',
+    name: 'Plan comparison',
+    purpose: 'Compare plans side by side before changing one. Ann tested it with five customers about to downgrade; three kept their plan.',
+    useCase: 'user-test',
+    product: 'account',
+    experimental: ['Account app: Plans page'],
+    requestedBy: 'Ann Leroy',
+    files: [
+      ['Plans.tsx', 'apps/account/src/pages/Plans.tsx'],
+      ['plans.module.css', 'apps/account/src/plans.module.css'],
+    ],
+    then: 'kept',
+  },
+];

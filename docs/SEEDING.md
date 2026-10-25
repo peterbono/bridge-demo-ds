@@ -14,6 +14,7 @@ the text of a change. Every GitHub action is done by the account that runs the s
 | `history` | Past changes merged to main: token changes, docs, an applied suggestion, a fix that closes a request, an adoption fix in the Account app | `bridge_propose_token_change`, `bridge_save_docs`, `bridge apply`, plain branches for code, then a squash merge |
 | `open` | The changes waiting for review: 6 token changes, 4 component changes (each closes a request), 2 docs changes (one drafted by Claude), a new brand, 3 suggestions, 3 requests nobody started, a product branch in the Account app | Bridge MCP tools; component code from `scripts/seed/patches/*.patch` |
 | `states` | Send for review (some stay draft), owner comments, and one late merge that changes the token a suggestion edits, so that suggestion is outdated | `bridge_send_for_review`, `bridge_comment`, a token change merged last |
+| `explorations` | Three Account app explorations, one per state of the Studio home: pieces found (Team seats and roles), promoted to review (Notification channels), kept (Plan comparison, promoted and merged) | `bridge_start_exploration`, screen code from `scripts/seed/product/`, `bridge_missing_pieces`, `bridge_promote_exploration`, then a squash merge |
 
 The plan (titles, summaries, edits) lives in `scripts/seed/plan.mjs`. `scripts/seed/state.json` records what each
 item became (pull request or issue number).
@@ -27,6 +28,7 @@ node scripts/seed-demo.mjs check     # dry run of every token, docs and brand ch
 node scripts/seed-demo.mjs history
 node scripts/seed-demo.mjs open
 node scripts/seed-demo.mjs states
+node scripts/seed-demo.mjs explorations
 ```
 
 Each step skips an item whose pull request or issue already exists with the same title, so a phase can be run again

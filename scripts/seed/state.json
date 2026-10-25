@@ -97,5 +97,26 @@
   },
   "h-moderate-250": {
     "merged": true
+  },
+  "x-team-seats": {
+    "number": 46,
+    "branch": "explore/team-seats-and-roles",
+    "code": true,
+    "pieces": true
+  },
+  "x-notification-channels": {
+    "number": 47,
+    "branch": "explore/notification-channels",
+    "code": true,
+    "pieces": true,
+    "promoted": true
+  },
+  "x-plan-comparison": {
+    "number": 48,
+    "branch": "explore/plan-comparison",
+    "code": true,
+    "pieces": true,
+    "promoted": true,
+    "merged": true
   }
 }

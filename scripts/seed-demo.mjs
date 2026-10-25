@@ -5,6 +5,7 @@
 //   node scripts/seed-demo.mjs history            merge the past changes to main
 //   node scripts/seed-demo.mjs open               open the changes waiting for review, the requests and the product branch
 //   node scripts/seed-demo.mjs states             send for review, owner comments, the late merge that outdates a suggestion
+//   node scripts/seed-demo.mjs explorations       Account app explorations: pieces found, promoted to review, kept (merged)
 //   node scripts/seed-demo.mjs all               history, open, states
 //
 // Needs: node 20+, git, gh (signed in with write access to the repo). The GitHub token comes from GITHUB_TOKEN or
@@ -16,7 +17,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { connectBridge } from './mcp-client.mjs';
-import { HISTORY, LATE_MERGE, OPEN, PRODUCT_BRANCH, REQUESTS } from './seed/plan.mjs';
+import { EXPLORATIONS, HISTORY, LATE_MERGE, OPEN, PRODUCT_BRANCH, REQUESTS } from './seed/plan.mjs';
 
 const REPO = process.env.SEED_REPO || 'peterbono/bridge-demo-ds';
 const CLI = process.env.SEED_CLI || '@bridge-ds/cli@0.11.1';
@@ -285,6 +286,63 @@ async function productBranch() {
   }
 }
 
+/**
+ * The Account app explorations of the Studio home, one per state: started through Bridge, screen code committed, what
+ * they add outside the library recorded; then `review` promotes it, `kept` promotes and merges it.
+ */
+async function explorations() {
+  for (const x of EXPLORATIONS) {
+    const s = (state[x.key] ??= {});
+    if (!s.number) {
+      const found = ghJson('pr', 'list', '-R', REPO, '--state', 'all', '--json', 'number,headRefName').find((p) => p.headRefName === `explore/${x.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
+      if (found) s.number = found.number;
+      else {
+        const r = await mcp('bridge_start_exploration', { name: x.name, purpose: x.purpose, useCase: x.useCase, product: x.product, experimental: x.experimental });
+        s.number = r.pr;
+        s.branch = r.branch;
+        log(`open  #${r.pr} ${r.branch} (exploration)`);
+      }
+      save();
+    }
+    const n = s.number;
+    if (!s.code) {
+      const branch = s.branch ?? ghJson('pr', 'view', String(n), '-R', REPO, '--json', 'headRefName').headRefName;
+      const dir = workdir();
+      sh('git', ['-C', dir, 'checkout', '-q', branch]);
+      for (const [from, to] of x.files) writeFileSync(join(dir, to), readFileSync(join(HERE, 'seed', 'product', from), 'utf8'));
+      sh('git', ['-C', dir, 'add', '-A']);
+      sh('git', ['-C', dir, 'commit', '-q', '-m', `Account app: ${x.name.toLowerCase()}`]);
+      sh('git', ['-C', dir, 'push', '-q']);
+      const body = ghJson('pr', 'view', String(n), '-R', REPO, '--json', 'body').body;
+      if (!/Requested by /.test(body)) gh('pr', 'edit', String(n), '-R', REPO, '--body', noEmDash(`${body}\n\nRequested by ${x.requestedBy}.`));
+      s.code = true;
+      save();
+      log(`code  #${n} ${x.name}`);
+    }
+    if (!s.pieces) {
+      try {
+        const r = await mcp('bridge_missing_pieces', { pr: n, record: true });
+        log(`pieces #${n} recorded: ${r.pieces?.length ?? 0}`);
+        s.pieces = true;
+        save();
+      } catch (e) {
+        log(`pieces #${n} not recorded: ${e.message.slice(0, 200)}`);
+      }
+    }
+    if ((x.then === 'review' || x.then === 'kept') && !s.promoted) {
+      await mcp('bridge_promote_exploration', { exploration: String(n) });
+      s.promoted = true;
+      save();
+      log(`ready #${n} ${x.name} (promoted to review)`);
+    }
+    if (x.then === 'kept' && !s.merged) {
+      merge(n, x.name);
+      s.merged = true;
+      save();
+    }
+  }
+}
+
 async function states() {
   for (const item of OPEN) {
     const n = state[item.key]?.number;
@@ -312,8 +370,9 @@ try {
   else if (phase === 'history') await history();
   else if (phase === 'open') await open();
   else if (phase === 'states') await states();
+  else if (phase === 'explorations') await explorations();
   else if (phase === 'all') { await history(); await open(); await states(); }
-  else throw new Error(`Unknown phase "${phase}". Use check, history, open, states or all.`);
+  else throw new Error(`Unknown phase "${phase}". Use check, history, open, states, explorations or all.`);
 } finally {
   bridge?.close();
 }
