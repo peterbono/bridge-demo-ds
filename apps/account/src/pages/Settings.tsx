@@ -1,5 +1,19 @@
-import { Avatar, Button, Card, CardBody, CardHeader, Field, Input, PageHeader, Switch } from '@demo-ds/react';
+import { Avatar, Button, Card, CardBody, CardHeader, Field, Input, PageHeader, SegmentedControl, Switch } from '@demo-ds/react';
 import styles from '../account.module.css';
+
+// Notifications by channel: each alert says where it goes (email, in the app, or both), built with the library only.
+const ALERTS = [
+  { key: 'invoice', label: 'New invoice', hint: 'When an invoice is ready to pay.', on: true, channel: 'both' },
+  { key: 'seats', label: 'Seats almost full', hint: 'When 9 of 10 seats are used.', on: true, channel: 'email' },
+  { key: 'summary', label: 'Weekly summary', hint: 'Usage and spend, every Monday.', on: true, channel: 'email' },
+  { key: 'updates', label: 'Product updates', hint: 'New features, once a month.', on: false, channel: 'app' },
+];
+
+const CHANNELS = [
+  { value: 'email', label: 'Email' },
+  { value: 'app', label: 'In the app' },
+  { value: 'both', label: 'Both' },
+];
 
 export function SettingsPage() {
   return (
@@ -15,9 +29,6 @@ export function SettingsPage() {
             <Field label="Full name">
               <Input defaultValue="Dana Moreau" autoComplete="name" />
             </Field>
-            <Field label="Work email" description="We send receipts and security alerts here.">
-              <Input type="email" defaultValue="dana@example.com" autoComplete="email" />
-            </Field>
           </div>
         </CardBody>
       </Card>
@@ -26,14 +37,16 @@ export function SettingsPage() {
           <h2>Notifications</h2>
         </CardHeader>
         <CardBody>
-          <div className={styles.row}>
-            <span>Weekly summary</span>
-            <Switch defaultChecked aria-label="Weekly summary" />
-          </div>
-          <div className={styles.row}>
-            <span>Product updates</span>
-            <Switch aria-label="Product updates" />
-          </div>
+          {ALERTS.map((a) => (
+            <div key={a.key} className={styles.row}>
+              <span className={styles.section}>
+                <span>{a.label}</span>
+                <span className={styles.muted}>{a.hint}</span>
+              </span>
+              <SegmentedControl label={`Where ${a.label} goes`} size="sm" items={CHANNELS} defaultValue={a.channel} />
+              <Switch defaultChecked={a.on} aria-label={a.label} />
+            </div>
+          ))}
           <p className={styles.muted}>You can unsubscribe from any email with one click.</p>
         </CardBody>
       </Card>
