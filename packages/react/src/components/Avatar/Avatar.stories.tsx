@@ -14,7 +14,7 @@ const meta = {
   title: 'Data display/Avatar',
   component: Avatar,
   args: { name: 'Ann Leroy', size: 'md' },
-  argTypes: { size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg'] } },
+  argTypes: { size: { control: 'inline-radio', options: ['xs', 'sm', 'md', 'lg', 'xl'] } },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
