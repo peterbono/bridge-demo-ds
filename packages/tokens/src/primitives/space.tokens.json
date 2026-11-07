@@ -97,6 +97,13 @@
         "value": 6,
         "unit": "px"
       }
+    },
+    "14": {
+      "$description": "Between page sections on roomy layouts.",
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      }
     }
   }
 }
