@@ -3,7 +3,7 @@ import { Avatar as BaseAvatar } from '@base-ui/react/avatar';
 import { cx } from '../../utils/cx';
 import styles from './Avatar.module.css';
 
-export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg';
+export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 /** What shows when there is no photo, or while it loads, or when it fails. */
 export type AvatarFallback = 'initials' | 'illustrated';
 /** A person (or a team), or an AI agent acting in the product. */

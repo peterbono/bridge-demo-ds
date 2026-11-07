@@ -10,7 +10,8 @@
     "fallback=\"illustrated\" when most people have no photo: a drawn face from their login tells rows apart faster than two letters. Import Avatar from @demo-ds/react/avatar-illustrated (the drawings are a separate entry, about 120 kB gzipped).",
     "kind=\"agent\" brand=\"claude\" for work Claude did (a drafted text, a change it opened): the Bridge agent mark (the Field Guide robot: a rounded head with an antenna, dot eyes and a smile) on a rounded square tile, named \"Claude AI\", so people see at a glance it is not a person.",
     "mark only to show a vendor logo you have the brand owner's approval to use: Bridge ships its own agent mark because company logos are trademarks that need their owner's approval.",
-    "AvatarGroup for the reviewers of a change; set max so the row never wraps."
+    "AvatarGroup for the reviewers of a change; set max so the row never wraps.",
+    "size=\"xl\" (64px) once per page, for the person the page is about: a profile or account page."
   ],
   "whenNotToUse": [
     "As the only way to identify someone in a table: write the name too.",
