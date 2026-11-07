@@ -1,11 +1,13 @@
 import { Badge, Button, Card, CardBody, CardFooter, CardHeader, PageHeader, Table } from '@demo-ds/react';
 import styles from '../account.module.css';
 
+const STATUS_TONE = { Paid: 'success', Refunded: 'neutral' } as const;
+
 const INVOICES = [
   { id: 'INV-2041', date: 'Oct 1', amount: '$48.00', status: 'Paid' },
   { id: 'INV-1987', date: 'Sep 1', amount: '$48.00', status: 'Paid' },
   { id: 'INV-1930', date: 'Aug 1', amount: '$36.00', status: 'Refunded' },
-];
+] as const;
 
 export function BillingPage() {
   return (
@@ -33,7 +35,7 @@ export function BillingPage() {
         </thead>
         <tbody>
           {INVOICES.map((i) => (
-            <tr key={i.id}><td>{i.id}</td><td>{i.date}</td><td>{i.amount}</td><td>{i.status}</td></tr>
+            <tr key={i.id}><td>{i.id}</td><td>{i.date}</td><td>{i.amount}</td><td><Badge tone={STATUS_TONE[i.status]}>{i.status}</Badge></td></tr>
           ))}
         </tbody>
       </Table>
