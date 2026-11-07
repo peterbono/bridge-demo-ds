@@ -1,0 +1,48 @@
+{
+  "summary": "The top of a profile page: the person's avatar and name, a one-line subtitle (role or team), optional meta such as availability, and one or two actions.",
+  "preview": { "c": "ProfileHeader", "p": { "name": "Dana Moreau", "subtitle": "Product designer, Payments" } },
+  "whenToUse": [
+    "Once at the top of a page about one person: a profile, a team member page, an account page.",
+    "subtitle: the role and team, the way colleagues would describe the person.",
+    "meta: one or two facts that help someone decide to reach out, like availability or local time.",
+    "actions: what you can do with this person (Message) or with your own profile (Edit profile)."
+  ],
+  "whenNotToUse": [
+    "Lists of people: use Avatar with the name in a table or list row.",
+    "Pages about a thing, not a person: use PageHeader.",
+    "The signed-in user menu: use Avatar in the top bar."
+  ],
+  "dos": [
+    {
+      "title": "Write the name as the person wrote it",
+      "text": "Keep accents, hyphens and capitals. The header wraps long names instead of cutting them.",
+      "example": { "c": "ProfileHeader", "p": { "name": "Anne-Sophie Leroy-Delacourt", "subtitle": "Design lead" } }
+    }
+  ],
+  "donts": [
+    {
+      "title": "Pack the subtitle",
+      "text": "One line about the role. Contact details and bios belong in the page content.",
+      "example": { "c": "ProfileHeader", "p": { "name": "Dana Moreau", "subtitle": "Product designer, Payments, Paris office, dana@example.com, joined in 2021, mentor" } }
+    }
+  ],
+  "accessibility": [
+    "Renders a header with a real heading for the name (h1 by default), so the page outline starts with the person.",
+    "The avatar is decorative here: the heading already says the name, so screen readers do not hear it twice.",
+    "Actions keep their own roles: a Button for actions, a link for navigation."
+  ],
+  "contentGuidelines": [
+    "Name: as the person wrote it, never truncated.",
+    "Subtitle: role and team, sentence case, no trailing period.",
+    "Actions: verb plus object (\"Edit profile\", \"Message\")."
+  ],
+  "anatomy": {
+    "profileHeader": "Container",
+    "avatar": "Avatar (lg)",
+    "text": "Name, subtitle and meta column",
+    "name": "Person's name (h1 by default)",
+    "subtitle": "Role or team",
+    "meta": "Meta facts",
+    "actions": "Actions"
+  }
+}

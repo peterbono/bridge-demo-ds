@@ -71,3 +71,4 @@ export * from './components/Inline';
 export * from './components/Grid';
 export * from './components/Container';
 export * from './components/PageHeader';
+export * from './components/ProfileHeader';
