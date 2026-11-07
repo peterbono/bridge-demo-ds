@@ -71,7 +71,7 @@
       },
       "muted": {
         "$type": "color",
-        "$value": "{palette.neutral.400}",
+        "$value": "{palette.neutral.300}",
         "$description": "Secondary text. 4.5:1 on every background."
       },
       "disabled": {
