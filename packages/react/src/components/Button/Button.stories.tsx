@@ -26,6 +26,7 @@ export const Ghost: Story = { args: { variant: 'ghost', children: 'View diff' } 
 export const Danger: Story = { args: { variant: 'danger', children: 'Delete 3 tokens', iconStart: Trash2 } };
 export const WithIcons: Story = { args: { iconStart: GitPullRequest, children: 'Open pull request' } };
 export const Loading: Story = { args: { loading: true, children: 'Publishing' } };
+export const LoadingLabel: Story = { args: { loading: true, loadingLabel: 'Saving', children: 'Save changes' } };
 export const Disabled: Story = { args: { disabled: true } };
 export const Link: Story = {
   args: { variant: 'link', children: 'Show only these' },
